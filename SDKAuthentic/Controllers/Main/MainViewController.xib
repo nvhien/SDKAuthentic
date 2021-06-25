@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
+            <connections>
+                <outlet property="draggableView" destination="JDj-xZ-ESg" id="OEA-oU-uSe"/>
+                <outlet property="iconImageView" destination="mId-Tl-YGu" id="M0p-hB-Kzz"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="draggableViews" destination="JDj-xZ-ESg" id="egz-d8-xt0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDj-xZ-ESg" userLabel="Draggble View">
+                    <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skw_logo_enabled" translatesAutoresizingMaskIntoConstraints="NO" id="mId-Tl-YGu">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="JDj-xZ-ESg" secondAttribute="height" multiplier="1:1" id="2ad-cY-Ry1"/>
+                        <constraint firstItem="mId-Tl-YGu" firstAttribute="centerY" secondItem="JDj-xZ-ESg" secondAttribute="centerY" id="4KT-mN-QSZ"/>
+                        <constraint firstAttribute="width" constant="50" id="8cB-H4-jgd"/>
+                        <constraint firstItem="mId-Tl-YGu" firstAttribute="width" secondItem="JDj-xZ-ESg" secondAttribute="width" id="RH2-N5-VIF"/>
+                        <constraint firstItem="mId-Tl-YGu" firstAttribute="height" secondItem="JDj-xZ-ESg" secondAttribute="height" id="ZHl-U9-1S2"/>
+                        <constraint firstItem="mId-Tl-YGu" firstAttribute="centerX" secondItem="JDj-xZ-ESg" secondAttribute="centerX" id="dOj-kd-eK4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="JDj-xZ-ESg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="RrB-Qh-Jqe"/>
+                <constraint firstItem="JDj-xZ-ESg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="d9l-LG-yBk"/>
+            </constraints>
+            <point key="canvasLocation" x="16" y="82"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="skw_logo_enabled" width="396" height="396"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
