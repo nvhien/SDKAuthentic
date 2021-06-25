@@ -8,7 +8,7 @@
 #ifndef Constants_h
 #define Constants_h
 
-#define FRAMEWORK_ENABLE                    1
+#define FRAMEWORK_ENABLE                    0
 
 typedef enum {
     LOGOUT,
