@@ -14,5 +14,4 @@
 #import "ApiStatus.h"
 #import "IapList.h"
 
-
 #endif /* DataObjects_h */

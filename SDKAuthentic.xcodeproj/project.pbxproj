@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD38BD8726884EF20060F661 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8626884EF20060F661 /* SafariServices.framework */; };
+		BD38BD8F268850000060F661 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD38BD8826884FFE0060F661 /* GoogleSignIn.bundle */; };
+		BD38BD90268850000060F661 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8926884FFE0060F661 /* GoogleSignIn.framework */; };
+		BD38BD91268850000060F661 /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8A26884FFE0060F661 /* GoogleSignInDependencies.framework */; };
+		BD38BD92268850000060F661 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8B26884FFF0060F661 /* FBSDKCoreKit.framework */; };
+		BD38BD93268850000060F661 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8C26884FFF0060F661 /* FBSDKLoginKit.framework */; };
+		BD38BD94268850000060F661 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8D26884FFF0060F661 /* Bolts.framework */; };
+		BD38BD95268850000060F661 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD8E268850000060F661 /* FBSDKShareKit.framework */; };
+		BD38BD97268850690060F661 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD96268850690060F661 /* AuthenticationServices.framework */; };
+		BD38BD992688506F0060F661 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD982688506F0060F661 /* LocalAuthentication.framework */; };
+		BD38BD9B268850860060F661 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD9A268850860060F661 /* QuartzCore.framework */; };
+		BD38BD9D268850970060F661 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD38BD9C268850970060F661 /* SystemConfiguration.framework */; };
 		BD5AC93C268581E000DCB806 /* SDKAuthentic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD5AC932268581E000DCB806 /* SDKAuthentic.framework */; };
 		BD5AC941268581E000DCB806 /* SDKAuthenticTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5AC940268581E000DCB806 /* SDKAuthenticTests.m */; };
 		BD5AC943268581E000DCB806 /* SDKAuthentic.h in Headers */ = {isa = PBXBuildFile; fileRef = BD5AC935268581E000DCB806 /* SDKAuthentic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -144,6 +156,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD38BD8626884EF20060F661 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
+		BD38BD8826884FFE0060F661 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
+		BD38BD8926884FFE0060F661 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
+		BD38BD8A26884FFE0060F661 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
+		BD38BD8B26884FFF0060F661 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		BD38BD8C26884FFF0060F661 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		BD38BD8D26884FFF0060F661 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		BD38BD8E268850000060F661 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		BD38BD96268850690060F661 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/iOSSupport/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
+		BD38BD982688506F0060F661 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/LocalAuthentication.framework; sourceTree = DEVELOPER_DIR; };
+		BD38BD9A268850860060F661 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		BD38BD9C268850970060F661 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		BD5AC932268581E000DCB806 /* SDKAuthentic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDKAuthentic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD5AC935268581E000DCB806 /* SDKAuthentic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKAuthentic.h; sourceTree = "<group>"; };
 		BD5AC936268581E000DCB806 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -278,6 +302,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD38BD9B268850860060F661 /* QuartzCore.framework in Frameworks */,
+				BD38BD97268850690060F661 /* AuthenticationServices.framework in Frameworks */,
+				BD38BD992688506F0060F661 /* LocalAuthentication.framework in Frameworks */,
+				BD38BD91268850000060F661 /* GoogleSignInDependencies.framework in Frameworks */,
+				BD38BD92268850000060F661 /* FBSDKCoreKit.framework in Frameworks */,
+				BD38BD93268850000060F661 /* FBSDKLoginKit.framework in Frameworks */,
+				BD38BD9D268850970060F661 /* SystemConfiguration.framework in Frameworks */,
+				BD38BD95268850000060F661 /* FBSDKShareKit.framework in Frameworks */,
+				BD38BD94268850000060F661 /* Bolts.framework in Frameworks */,
+				BD38BD8726884EF20060F661 /* SafariServices.framework in Frameworks */,
+				BD38BD90268850000060F661 /* GoogleSignIn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,12 +327,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD38BD8526884EF20060F661 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD38BD9C268850970060F661 /* SystemConfiguration.framework */,
+				BD38BD9A268850860060F661 /* QuartzCore.framework */,
+				BD38BD982688506F0060F661 /* LocalAuthentication.framework */,
+				BD38BD96268850690060F661 /* AuthenticationServices.framework */,
+				BD38BD8D26884FFF0060F661 /* Bolts.framework */,
+				BD38BD8B26884FFF0060F661 /* FBSDKCoreKit.framework */,
+				BD38BD8C26884FFF0060F661 /* FBSDKLoginKit.framework */,
+				BD38BD8E268850000060F661 /* FBSDKShareKit.framework */,
+				BD38BD8826884FFE0060F661 /* GoogleSignIn.bundle */,
+				BD38BD8926884FFE0060F661 /* GoogleSignIn.framework */,
+				BD38BD8A26884FFE0060F661 /* GoogleSignInDependencies.framework */,
+				BD38BD8626884EF20060F661 /* SafariServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BD5AC928268581DF00DCB806 = {
 			isa = PBXGroup;
 			children = (
 				BD5AC934268581E000DCB806 /* SDKAuthentic */,
 				BD5AC93F268581E000DCB806 /* SDKAuthenticTests */,
 				BD5AC933268581E000DCB806 /* Products */,
+				BD38BD8526884EF20060F661 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -865,6 +920,7 @@
 				BD5AC9EF2685840B00DCB806 /* SVProgressHUD.bundle in Resources */,
 				BD5ACA342685840B00DCB806 /* ChangePasswordViewController.xib in Resources */,
 				BD5ACA4B2685840B00DCB806 /* SigninCollectionViewCell.xib in Resources */,
+				BD38BD8F268850000060F661 /* GoogleSignIn.bundle in Resources */,
 				BD5ACA312685840B00DCB806 /* ChangeEmailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1082,6 +1138,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SDKAuthentic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1106,6 +1166,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SDKAuthentic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

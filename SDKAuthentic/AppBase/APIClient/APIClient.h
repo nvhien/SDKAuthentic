@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
 #import "ApiDataObjects.h"
 
 @interface APIClient : NSObject
@@ -31,10 +32,11 @@
 #pragma mark - Login
 - (void)loginWithAccount:(NSString *)userName password:(NSString *)password gameId:(NSInteger)gameId completion:(void(^)(User *, ApiStatus *, NSError *))completion;
 
-#pragma mark - Login
 - (void)loginWithGuest:(NSString *)guestId gameId:(NSInteger)gameId completion:(void(^)(User *, ApiStatus *, NSError *))completion;
 
-- (void)loginWithFacebookToken:(NSString *)token appId:(NSInteger)appId completion:(void(^)(NSString *, User *, NSError *))completion;
+- (void)loginWithFacebookToken:(NSInteger)gameId appKey:(NSString *)appKey code:(NSString *)code  fcmKey:(NSString *)fcmKey completion:(void(^)(User *, ApiStatus *, NSError *))completion;
+
+- (void)loginWithGoogle:(NSInteger)gameId appKey:(NSString *)appKey code:(NSString *)code  fcmKey:(NSString *)fcmKey completion:(void(^)(User *, ApiStatus *, NSError *))completion;
 
 - (void)refreshToken:(NSString *)token completion:(void(^)(NSString *))completion;
 

@@ -72,6 +72,8 @@ typedef NS_OPTIONS(NSInteger, CategoryType) {
 // API REQUEST
 #define API_REQUEST_LOGIN_SKW                   @"user/login/skw"
 #define API_REQUEST_LOGIN_GUEST                 @"user/login/guest"
+#define API_REQUEST_LOGIN_FACEBOOK              @"user/login/facebook"
+#define API_REQUEST_LOGIN_GOOGLE                @"user/login/google"
 #define API_REQUEST_USER_LOGOUT                 @"user/logout"
 #define API_REQUEST_VERIFY_SESSION              @"user/verifySession"
 #define API_REQUEST_REGISTER                    @"user/register"

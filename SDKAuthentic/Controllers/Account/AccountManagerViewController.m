@@ -19,8 +19,12 @@
 #import "Constants.h"
 #import "LocalStored.h"
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface AccountManagerViewController ()<UITextFieldDelegate, UICollectionViewDataSource, SigninCollectionViewCellDelegate, SignupCollectionViewCellDelegate, ForgotPassCollectionViewCellDelegate> {
+
+@interface AccountManagerViewController ()<UITextFieldDelegate, UICollectionViewDataSource, SigninCollectionViewCellDelegate, SignupCollectionViewCellDelegate, ForgotPassCollectionViewCellDelegate, GIDSignInDelegate> {
     AccountScreenState state;
 }
 
@@ -91,26 +95,24 @@
         __weak typeof(self) weakSelf = self;
         [[APIClient shared] verifyToken:accessToken completion:^(User *user, BOOL success) {
             [self showLoading:NO];
+            [self p_updateState:AccountScreenStateSignin];
             if (success) {
                 if (FRAMEWORK_ENABLE) {
-                    if (weakSelf.completedCallback) {
-                        [weakSelf dismissViewControllerAnimated:YES completion:^{
-                            weakSelf.completedCallback(SIGNED_IN, accessToken);
-                        }];
+                    NSBundle *bundle = [AppUtils getSdkBundle];
+                    if (bundle != nil) {
+                        weakSelf.completedCallback(SIGNED_IN, accessToken);
+                        /*
+                        MainViewController *vc = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:bundle];
+                        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+                        [weakSelf presentViewController:vc animated:true completion:nil];
+                         */
                     }
                 }
                 else{
+                    weakSelf.completedCallback(SIGNED_IN, accessToken);
                     MainViewController *vc = [[MainViewController alloc] init];
                     vc.modalPresentationStyle = UIModalPresentationFullScreen;
                     [weakSelf presentViewController:vc animated:true completion:nil];
-                }
-            }
-            else {
-                if (FRAMEWORK_ENABLE) {
-                    if (weakSelf.completedCallback) {
-                        [weakSelf p_updateState:AccountScreenStateSignin];
-                        weakSelf.completedCallback(LOGOUT, nil);
-                    }
                 }
             }
         }];
@@ -153,6 +155,7 @@
     switch (state) {
         case AccountScreenStateSignin: {
             SigninCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"signin_cell" forIndexPath:indexPath];
+//            [cell refresh];
             cell.delegate = self;
             return cell;
         }
@@ -189,11 +192,42 @@
 -(void) signinCollectionCell:(SigninCollectionViewCell *)cell actionWithType:(ActionTypeSignin)type secretName:(NSString *)email secretPassword:(NSString *)password {
     switch (type) {
         case SigninFacebook:{
-            [ZLUtilities showToast:FEATURE_NOT_READY];
+            FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+            [login logInWithReadPermissions:@[@"public_profile"] fromViewController:self handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                if (error) {
+                } else if (result.isCancelled) {
+                } else {
+                    NSString *facebookToken = [FBSDKAccessToken currentAccessToken].tokenString;
+                    [self showLoading:YES];
+                    __weak typeof(self) weakSelf = self;
+                    [[APIClient shared] loginWithFacebookToken:1 appKey:@"xxx" code:facebookToken fcmKey:@"" completion:^(User *user, ApiStatus *status, NSError *error) {
+                        [weakSelf showLoading:NO];
+                        if (status != nil && user != nil){
+                            if (FRAMEWORK_ENABLE) {
+                                NSBundle *bundle = [AppUtils getSdkBundle];
+                                if (bundle != nil) {
+                                    if (weakSelf.completedCallback) {
+                                        weakSelf.completedCallback(SIGNED_IN, user.accessToken);
+                                    }
+                                }
+                            }
+                            else{
+                                weakSelf.completedCallback(SIGNED_IN, user.accessToken);
+                                MainViewController *vc = [[MainViewController alloc] init];
+                                vc.modalPresentationStyle = UIModalPresentationFullScreen;
+                                [weakSelf presentViewController:vc animated:true completion:nil];
+                            }
+                        }
+                    }];
+                }
+            }];
             break;
         }
         case SigninGoogle:{
-            [ZLUtilities showToast:FEATURE_NOT_READY];
+//            [ZLUtilities showToast:FEATURE_NOT_READY];
+            [GIDSignIn sharedInstance].presentingViewController = self;
+            [GIDSignIn sharedInstance].delegate = self;
+            [[GIDSignIn sharedInstance] signIn];
             break;
         }
         case Signup:
@@ -218,9 +252,7 @@
                         NSBundle *bundle = [AppUtils getSdkBundle];
                         if (bundle != nil) {
                             if (weakSelf.completedCallback) {
-                                [weakSelf dismissViewControllerAnimated:YES completion:^{
-                                    weakSelf.completedCallback(SIGNED_IN, user.accessToken);
-                                }];
+                                weakSelf.completedCallback(SIGNED_IN, user.accessToken);
                             }
                             /*
                             MainViewController *vc = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:bundle];
@@ -230,6 +262,7 @@
                         }
                     }
                     else{
+                        weakSelf.completedCallback(SIGNED_IN, user.accessToken);
                         MainViewController *vc = [[MainViewController alloc] init];
                         vc.modalPresentationStyle = UIModalPresentationFullScreen;
                         [weakSelf presentViewController:vc animated:true completion:nil];
@@ -262,16 +295,13 @@
     [self showLoading:YES];
     __weak typeof(self) weakSelf = self;
     [[APIClient shared] loginWithAccount:userName password:password gameId:1 completion:^(User *user, ApiStatus *status, NSError *error) {
-        [weakSelf showLoading:NO];
         if (status != nil && user != nil){
             [cell resetData];
             if (FRAMEWORK_ENABLE) {
                 NSBundle *bundle = [AppUtils getSdkBundle];
                 if (bundle != nil) {
                     if (weakSelf.completedCallback) {
-                        [weakSelf dismissViewControllerAnimated:YES completion:^{
-                            weakSelf.completedCallback(SIGNED_IN, user.accessToken);
-                        }];
+                        weakSelf.completedCallback(SIGNED_IN, user.accessToken);
                     }
                     /*
                     MainViewController *vc = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:bundle];
@@ -445,6 +475,41 @@
             [weakSelf.collectionView reloadData];
         }
     }];
+}
+
+#pragma mark - Signin Google Delegate
+
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    if (error == nil) {
+        GIDAuthentication *authentication = user.authentication;
+//        FIRAuthCredential *credential =
+//        [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
+//                                         accessToken:authentication.accessToken];
+        [self showLoading:YES];
+        __weak typeof(self) weakSelf = self;
+        [[APIClient shared] loginWithGoogle:1 appKey:@"xxx" code:authentication.accessToken fcmKey:@"" completion:^(User *user, ApiStatus *status, NSError *error) {
+            [weakSelf showLoading:NO];
+            if (status != nil && user != nil){
+                if (FRAMEWORK_ENABLE) {
+                    NSBundle *bundle = [AppUtils getSdkBundle];
+                    if (bundle != nil) {
+                        if (weakSelf.completedCallback) {
+                            weakSelf.completedCallback(SIGNED_IN, user.accessToken);
+                        }
+                    }
+                }
+                else{
+                    weakSelf.completedCallback(SIGNED_IN, user.accessToken);
+                    MainViewController *vc = [[MainViewController alloc] init];
+                    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+                    [weakSelf presentViewController:vc animated:true completion:nil];
+                }
+            }
+        }];
+    
+      } else {
+          NSLog(@"Signin Google Error : %@", error.description);
+      }
 }
 
 @end

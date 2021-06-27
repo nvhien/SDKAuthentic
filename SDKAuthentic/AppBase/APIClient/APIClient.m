@@ -13,7 +13,6 @@
 #import "ZLUtilities.h"
 #import "Session.h"
 #import "LocalStored.h"
-#import "IapList.h"
 
 @interface APIClient(){
     AFHTTPSessionManager *_manager;
@@ -156,6 +155,77 @@
                 API_PARAM_GUEST_ID : UDID,
                 API_PARAM_APP_KEY : @"xxx",
                 API_PARAM_DEVICE_INFO : UDID
+                }
+        headers:nil
+        progress:nil
+        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (completion) {
+            ApiStatus *status = [ApiStatus parseObject:responseObject[API_PARAM_ERROR]];
+            User *user = [User parseObject:responseObject[API_PARAM_DATA]];
+            if (status.code == ApiCodeSuccess) {
+                [Session shared].user = user;
+                [Session shared].sessionToken = user.accessToken;
+                [LocalStored setAccessToken:user.accessToken];
+                [self updateAuthorizationHeader:[[Session shared] authHeaderField]];
+                completion(user, status, nil);
+            }
+            else{
+                [ZLUtilities showToast:status.message];
+                completion(nil, nil, nil);
+            }
+        }
+        }
+        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (completion) {
+            [APIClient logError:error];
+            completion(nil, nil, error);
+        }
+    }];
+}
+
+- (void)loginWithFacebookToken:(NSInteger)gameId appKey:(NSString *)appKey code:(NSString *)code fcmKey:(NSString *)fcmKey completion:(void (^)(User *, ApiStatus *, NSError *))completion {
+    [_manager GET:API_REQUEST_LOGIN_FACEBOOK
+        parameters:@{
+                API_PARAM_GAME_ID : @(gameId),
+                API_PARAM_APP_KEY : @"xxx",
+                API_PARAM_DEVICE_INFO : UDID,
+                API_PARAM_CODE : code,
+                }
+        headers:nil
+        progress:nil
+        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (completion) {
+            ApiStatus *status = [ApiStatus parseObject:responseObject[API_PARAM_ERROR]];
+            User *user = [User parseObject:responseObject[API_PARAM_DATA]];
+            if (status.code == ApiCodeSuccess) {
+                [Session shared].user = user;
+                [Session shared].sessionToken = user.accessToken;
+                [LocalStored setAccessToken:user.accessToken];
+                [self updateAuthorizationHeader:[[Session shared] authHeaderField]];
+                completion(user, status, nil);
+            }
+            else{
+                [ZLUtilities showToast:status.message];
+                completion(nil, nil, nil);
+            }
+        }
+        }
+        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (completion) {
+            [APIClient logError:error];
+            completion(nil, nil, error);
+        }
+    }];
+}
+
+- (void)loginWithGoogle:(NSInteger)gameId appKey:(NSString *)appKey code:(NSString *)code fcmKey:(NSString *)fcmKey completion:(void (^)(User *, ApiStatus *, NSError *))completion {
+    NSLog(@"Google token : %@", code);
+    [_manager GET:API_REQUEST_LOGIN_GOOGLE
+        parameters:@{
+                API_PARAM_GAME_ID : @(gameId),
+                API_PARAM_APP_KEY : @"xxx",
+                API_PARAM_DEVICE_INFO : UDID,
+                API_PARAM_CODE : code,
                 }
         headers:nil
         progress:nil

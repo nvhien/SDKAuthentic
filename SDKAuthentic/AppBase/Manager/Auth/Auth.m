@@ -139,14 +139,6 @@ NSString *const kAuthEvent_UserSessionChanged               = @"AuthUserSessionC
     }];
 }
 
-- (void)loginWithFacebookToken:(NSString *)token {
-    [[APIClient shared] loginWithFacebookToken:token appId:[Session shared].appId completion:nil];
-}
-
-- (void)loginWithFacebookToken:(NSString *)token completion:(void (^)(BOOL))completion {
-    
-}
-
 - (void)refreshTokenWithCompletion:(void(^)(BOOL success))completion {
 }
 
