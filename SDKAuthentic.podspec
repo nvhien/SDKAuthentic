@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source_files  = "SDKAuthentic/**/*.{h,m,mm,cpp,c}"
   s.public_header_files = ['SDKAuthentic/*.h', 'SDKAuthentic/objects/*.h', 'SDKAuthentic/configuration/*.h']
 
-  s.frameworks = "AVFoundation","Foundation","UIKit"
+  s.frameworks = "AVFoundation","Foundation","UIKit","Bolts","FBSDKCoreKit","FBSDKLoginKit","FBSDKShareKit","GoogleSignIn","GoogleSignInDependencies","QuartzCore","SafariServices","SystemConfiguration"
   s.libraries = "c++", "z"
 
   s.requires_arc = true
